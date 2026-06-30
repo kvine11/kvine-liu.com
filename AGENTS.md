@@ -1,6 +1,6 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Codex (Codex.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -24,7 +24,7 @@ This is a personal HTML/CSS learning project. It is not a production codebase �
 ## Version Control
 
 - This project is tracked in git and pushed to a private GitHub repo: `kvine11/Personal-Portfolio` (https://github.com/kvine11/Personal-Portfolio).
-- `CLAUDE.local.md` and `.claude/settings.local.json` are intentionally git-ignored — they're personal/local-only files, not meant to be pushed.
+- `Codex.local.md` and `.Codex/settings.local.json` are intentionally git-ignored — they're personal/local-only files, not meant to be pushed.
 - The user is using **GitHub Desktop** as their day-to-day git client (rather than the terminal) — add the local repo via "File → Add Local Repository," then the normal flow is: edit files → review Changes in GitHub Desktop → write commit message → Commit to main → Push origin.
 
 ## Working in This Repo

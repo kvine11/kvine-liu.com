@@ -12,43 +12,70 @@ github/linkedin-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kevin Liu</title>
     <style>
+      :root {
+        --background: #fbfaf7;
+        --text: #22211f;
+        --muted-text: #706c66;
+        --heading: #151515;
+        --line: #e6e1d8;
+        --accent: #7a5c3d;
+        --accent-hover: #4f3824;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(4px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
       body {
-        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-        color: #2c2c2c;
-        background-color: #f4f1ec;
-        max-width: 650px;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--text);
+        background-color: var(--background);
+        max-width: 680px;
         margin: 0 auto;
-        padding: 40px 20px;
-        line-height: 1.6;
+        padding: 56px 24px;
+        line-height: 1.7;
       }
 
       h1 {
-        font-size: 2.2em;
-        color: #1f2d3d;
+        font-size: 2.6em;
+        color: var(--heading);
+        font-weight: 500;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
         margin-bottom: 0;
       }
 
-      img {
-        width: 140px;
-        border-radius: 50%;
-        margin: 20px 0;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      .fade-animation {
+        animation: fadeIn 1.4s ease-out forwards;
       }
 
       #bio p {
         font-size: 1.05em;
-        max-width: 550px;
+        max-width: 580px;
+        color: var(--muted-text);
       }
 
       .headings {
-        color: #1f2d3d;
-        border-bottom: 2px solid #d8d2c5;
-        padding-bottom: 6px;
-        margin-top: 40px;
+        color: var(--heading);
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 8px;
+        margin-top: 48px;
+        font-size: 0.9em;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
 
       .sub-headings {
-        color: #5a5a5a;
+        color: var(--muted-text);
         font-size: 0.85em;
         margin-top: -4px;
       }
@@ -62,35 +89,66 @@ github/linkedin-->
         margin-bottom: 8px;
       }
 
+      .contact-list {
+        margin-top: 0;
+      }
+
+      .contact-lists {
+        display: inline-block;
+        margin-right: 14px;
+        margin-bottom: 0;
+        font-size: 0.85em;
+        color: var(--muted-text);
+        vertical-align: middle;
+      }
+
+      .contact-lists img {
+        width: 24px;
+        border-radius: 2.4px;
+        margin: 0;
+        box-shadow: none;
+        opacity: 0.75;
+        vertical-align: middle;
+      }
+
+      .contact-lists img:hover {
+        opacity: 1;
+      }
+
+      .contact-lists:last-child {
+        float: right;
+        margin-right: 0;
+      }
+
       a {
-        color: #2e6e8e;
+        color: var(--accent);
         text-decoration: none;
-        font-weight: bold;
+        font-weight: 600;
       }
 
       a:hover {
+        color: var(--accent-hover);
         text-decoration: underline;
       }
     </style>
   </head>
   <body>
     <div>
-      <h1>Kevin Liu</h1>
+      <h1 class="fade-animation">Kevin Liu</h1>
     </div>
 
-
     <div id="bio">
-      <p>
+      <p class="fade-animation">
         I am a freshman at UCLA studying CS + Engineering. I am currently
         interested in software development, robotics, and AI.
       </p>
     </div>
 
     <div>
-      <h2 class="headings">Projects</h2>
-      <ul>
+      <h2 class="headings fade-animation">Projects</h2>
+      <ul class="fade-animation">
         <li>FRC Programming</li>
-        <p class = "sub-headings">
+        <p class="sub-headings">
           Robot Code for
           <a href="https://github.com/FRC2714/Crescendo-2024">Crescendo</a>,
           <a href="https://github.com/FRC2714/Reefscape-2025">Reefscape</a>, and
@@ -102,21 +160,23 @@ github/linkedin-->
     </div>
 
     <div>
-      <h2 class="headings">Contact</h2>
+      <h2 class="headings fade-animation">Contact</h2>
       <!-- TODO: replace "TBD Link" placeholders with real Email/GitHub/LinkedIn URLs -->
       <!-- TODO: add a small icon image (<img>) inside each <li>, before the <a> text, e.g. images/github-icon.png -->
-      <ul>
-        <li>
-          <a href="TBD Link">Email</a>
+      <ul class="contact-list fade-animation">
+        <li class="contact-lists">
+          <a href="TBD Link">
+            <img src="images/github.svg" alt="GitHub" />
+          </a>
         </li>
 
-        <li>
-          <a href="TBD Link">Github</a>
+        <li class="contact-lists">
+          <a href="TBD Link">
+            <img src="images/linkedin.svg" alt="LinkedIn" />
+          </a>
         </li>
 
-        <li>
-          <a href="TBD LInk">Linkedin</a>
-        </li>
+        <li class="contact-lists">kvine.2714@gmail.com</li>
       </ul>
     </div>
   </body>
