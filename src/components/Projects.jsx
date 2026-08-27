@@ -6,7 +6,7 @@ import { projects, projectsRange } from "../data/site";
 export default function Projects() {
   return (
     <section id="work" className="px-6 md:px-16">
-      <div className="flex items-baseline justify-between pb-[11.2px] text-[11px] uppercase tracking-[0.16em] text-ink/50">
+      <div className="flex items-baseline justify-between pb-[11.2px] font-mono text-[11px] tracking-[0.16em] uppercase text-ink/50">
         <span>Projects</span>
         <span>{projectsRange}</span>
       </div>

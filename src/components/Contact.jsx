@@ -8,7 +8,7 @@ export default function Contact() {
     >
       {/* The 44px track lines this label up with the project numbers; the
           label itself runs on into the 48px gutter rather than wrapping. */}
-      <span className="text-[11px] whitespace-nowrap uppercase tracking-[0.16em] text-ink/50">
+      <span className="font-mono text-[11px] whitespace-nowrap tracking-[0.16em] uppercase text-ink/50">
         Say hi
       </span>
       <div className="flex min-w-0 flex-wrap items-baseline gap-x-[22.4px] gap-y-3 text-[15px]">
