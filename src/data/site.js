@@ -14,11 +14,7 @@ export const projects = [
     number: "01",
     title: "FRC Programming",
     description: "Robot Code for Crescendo, Reefscape, and Rebuilt",
-    // The design puts the Team 2714 BBQ logo beside this title. That image
-    // only ever existed as a paste inside the Claude Design project, so it
-    // isn't in this repo. To restore it: save the 200x200 PNG to
-    // public/images/team-2714-bbq.png and uncomment the line below.
-    // logo: { src: "/images/team-2714-bbq.png", alt: "FRC Team 2714 BBQ" },
+    logo: { src: "/assets/bbq.svg", alt: "FRC Team 2714 BBQ" },
     links: [
       {
         year: "2026",

@@ -21,10 +21,12 @@ export default function ProjectEntry({
             <img
               src={logo.src}
               alt={logo.alt}
-              /* `lighten` is the system's image wrapper: anything darker
-                 than the page falls away, so the logo sits on the ground
-                 instead of on a box. */
-              className="h-13 w-13 flex-none object-contain mix-blend-lighten [filter:invert(1)_brightness(0.92)]"
+              /* Nocturne's image treatment. `lighten` drops anything darker
+                 than the page, so the logo's white Texas silhouette falls
+                 away and only the wordmark reads. invert() lifts the black
+                 type to light ink; hue-rotate puts back the brand orange
+                 that invert alone turns blue. */
+              className="-mr-4 -ml-1 h-[68px] w-auto flex-none object-contain mix-blend-lighten [filter:invert(1)_hue-rotate(180deg)_brightness(0.92)]"
             />
           )}
           <h2 className="m-0 text-[34px] font-normal tracking-[-0.02em]">

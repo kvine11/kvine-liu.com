@@ -16,7 +16,7 @@ The design comes from the "Portfolio Redesign" Claude Design project (artboard *
 - `src/index.css` — Tailwind import plus the `@theme` block that registers the Nocturne design tokens.
 - `src/components/` — `NavBar`, `Hero`, `Projects`, `ProjectEntry`, `PlaceholderEntry`, `Contact`, `Eyebrow`, `FadingRule`.
 - `src/data/site.js` — **all page copy and links.** Editing the site's content means editing this file, not the components.
-- `public/images/` — static assets, served from the site root (`/images/...`).
+- `public/assets/` — static assets, served from the site root (`/assets/...`). Holds `bbq.svg` and nothing else; keep it that way. Note this shares a name with Vite's own output dir, so a build lands both `bbq.svg` and the hashed bundles in `dist/assets/` — harmless, since bundle names are content-hashed and can't collide.
 
 ## Commands
 
@@ -44,9 +44,17 @@ The design was drawn at 1180px wide. Breakpoints stage down from it:
 - `md` (768px) — the 44px number column appears; project links sit under the title.
 - `lg` (1024px) — the design's full three-column project row.
 
-## Known Gap
+## The BBQ Logo
 
-The FRC project entry is designed with the Team 2714 BBQ logo beside its title. That image only ever existed as a paste inside the Claude Design project and is not in this repo, so the `logo` field in `src/data/site.js` is commented out. To restore it: save the 200x200 PNG to `public/images/team-2714-bbq.png` and uncomment that line — `ProjectEntry` renders the logo only when the field is present.
+`public/assets/bbq.svg` is the Team 2714 mark: a white Texas silhouette behind black "2714 BBQ" type and an orange `#F05A28` flame. On the dark ground it goes through Nocturne's image treatment in `ProjectEntry`:
+
+`mix-blend-lighten` + `filter: invert(1) hue-rotate(180deg) brightness(0.92)`
+
+- `lighten` drops everything darker than the page, so the white silhouette falls away and only the wordmark reads — this is the system's stated doctrine for imagery.
+- `invert(1)` lifts the black type to light ink.
+- `hue-rotate(180deg)` puts back the brand orange, which `invert` alone turns blue.
+
+The negative `-mr-4 -ml-1` pulls in the dead space the now-invisible silhouette still occupies in the SVG's bounding box, so the gap to the heading reads as designed. If the logo is ever swapped, re-check all four of these together.
 
 ## Version Control
 
@@ -57,5 +65,4 @@ The FRC project entry is designed with the Team 2714 BBQ logo beside its title. 
 ## Next Steps
 
 - Two project slots (`02`, `03`) are placeholders in `src/data/site.js`. Give one a `title`, `description` and `links` to fill it.
-- Restore the Team 2714 logo (see Known Gap).
-- The 2a design has no profile photo. `public/images/me.jpeg` is still in the repo if one is wanted later.
+- The old `github.svg`, `linkedin.svg` and `me.jpeg` were removed from `public/assets/` — the 2a design uses text contact links and no photo. They remain in git history if ever wanted back.
