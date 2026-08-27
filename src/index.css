@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Nocturne design tokens, lifted from the design system's styles.css and
+   registered with Tailwind. Registering them under @theme is what turns
+   them into utilities: --color-accent becomes text-accent / bg-accent /
+   border-accent, --radius-md becomes rounded-md, and so on.
+
+   Nocturne's rule: never hard-code a hex or a font name that a token
+   already carries. Reach for these utilities instead.
+   ───────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Core roles */
+  --color-bg: #161826;
+  --color-surface: #232532;
+  --color-ink: #e9e9ed; /* Nocturne's --color-text */
+  --color-accent: #9184d9; /* the blurple, used as a line and a glow */
+  --color-divider: color-mix(in srgb, #e9e9ed 16%, transparent);
+
+  /* Neutral ramp — shared OKLCH lightness scale */
+  --color-neutral-100: #f3f5fe;
+  --color-neutral-200: #e4e7f5;
+  --color-neutral-300: #cfd3e5;
+  --color-neutral-400: #b2b6ca;
+  --color-neutral-500: #9397ab;
+  --color-neutral-600: #75798c;
+  --color-neutral-700: #595d6c;
+  --color-neutral-800: #3f424d;
+  --color-neutral-900: #292b31;
+
+  /* Accent ramp — 700-900 for tinted fills, 100-300 for text on them */
+  --color-accent-100: #f5f4ff;
+  --color-accent-200: #e7e5fe;
+  --color-accent-300: #d2cefd;
+  --color-accent-400: #b5abfc;
+  --color-accent-500: #968ae0;
+  --color-accent-600: #796cbf;
+  --color-accent-700: #5d5294;
+  --color-accent-800: #423a6a;
+  --color-accent-900: #2b2741;
+
+  /* Type — Inter over Inter; hierarchy is size and space, not weight */
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Radii (8px base) */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+}
+
+/* Muted text is the ink token at reduced alpha, so `text-ink/55` and
+   friends stand in for Nocturne's color-mix() calls throughout. */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans antialiased;
+  }
+
+  /* Nocturne themes its own focus ring — never leave the browser default. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
