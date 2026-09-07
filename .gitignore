@@ -1,5 +1,7 @@
 node_modules
 dist
+
+# Claude Code: keep launch.json (project run config), ignore local/session state
+.claude/*
+!.claude/launch.json
 CLAUDE.local.md
-.claude/settings.local.json
-__pycache__/
