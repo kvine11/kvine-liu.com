@@ -14,7 +14,6 @@ export const projects = [
     number: "01",
     title: "FRC Programming",
     description: "Robot Code for Crescendo, Reefscape, and Rebuilt",
-    logo: { src: "/assets/bbq-ink.svg", alt: "FRC Team 2714 BBQ" },
     links: [
       {
         year: "2026",

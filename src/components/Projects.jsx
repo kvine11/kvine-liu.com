@@ -1,6 +1,7 @@
 import FadingRule from "./FadingRule";
 import ProjectEntry from "./ProjectEntry";
 import PlaceholderEntry from "./PlaceholderEntry";
+import Reveal from "./Reveal";
 import { projects, projectsRange } from "../data/site";
 
 export default function Projects() {
@@ -13,16 +14,18 @@ export default function Projects() {
 
       <FadingRule />
 
-      {/* A rule closes every entry, including the last. */}
+      {/* Each entry fades/lifts into view once as it's scrolled to — this is
+          the thing that'll matter more as more projects get added below. A
+          rule closes every entry, including the last. */}
       {projects.map((project) => (
-        <div key={project.number}>
+        <Reveal key={project.number}>
           {project.title ? (
             <ProjectEntry {...project} />
           ) : (
             <PlaceholderEntry number={project.number} />
           )}
           <FadingRule />
-        </div>
+        </Reveal>
       ))}
     </section>
   );
