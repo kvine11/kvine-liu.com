@@ -14,6 +14,7 @@ export const projects = [
     number: "01",
     title: "FRC Programming",
     description: "Robot Code for Crescendo, Reefscape, and Rebuilt",
+    tags: ["Limelight", "WPILib", "Pose Estimation"],
     links: [
       {
         year: "2026",

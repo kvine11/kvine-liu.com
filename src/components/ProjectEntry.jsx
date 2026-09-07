@@ -2,8 +2,19 @@
  * One filled project row: number, title block, and the links stacked below
  * it. Text-only — no logo, no color accent. Hover feedback is an indent
  * shift plus the year label brightening from ink/45 to ink/75.
+ *
+ * `tags` (optional) render as a single dot-separated mono line — the same
+ * treatment as the section eyebrows and link years, not a badge/pill. That's
+ * deliberate: a colored chip would be the one bit of "accent" the rest of
+ * the system doesn't have anywhere else.
  */
-export default function ProjectEntry({ number, title, description, links }) {
+export default function ProjectEntry({
+  number,
+  title,
+  description,
+  tags,
+  links,
+}) {
   return (
     // One column on phones; number + content from md up. No lg-only third
     // column — links always sit stacked under the title.
@@ -17,6 +28,12 @@ export default function ProjectEntry({ number, title, description, links }) {
         <p className="mt-[11.2px] mb-0 max-w-[520px] text-[15px] leading-[1.6] font-light text-ink/65">
           {description}
         </p>
+
+        {tags && tags.length > 0 && (
+          <p className="mt-4 mb-0 font-mono text-[11px] tracking-[0.1em] text-ink/40 uppercase">
+            {tags.join(" · ")}
+          </p>
+        )}
 
         <div className="mt-8 flex min-w-0 flex-col">
           {links.map((link, i) => (
