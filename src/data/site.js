@@ -2,9 +2,10 @@
 // Editing the site is editing this file.
 
 export const profile = {
+  greeting: "Hi, I'm",
   name: "Kevin Liu",
   location: "Los Angeles · UCLA",
-  bio: "I am a freshman at UCLA studying CS + Engineering. I am currently interested in software development, robotics, and AI.",
+  bio: "I'm a freshman at UCLA studying CS and Engineering. I'm currently exploring AI, machine learning, and robotics.",
 };
 
 // Two bands on one page. Add an entry to either `entries` array and it
@@ -29,7 +30,7 @@ export const bands = [
     entries: [
       {
         title: "FRC Programming",
-        meta: "Team 2714 BBQ · Programming Captain · 2022–2026",
+        meta: "Team 2714 BBQ · Programming Captain",
         description: "Autonomous robot code across three competition seasons.",
         tags: ["WPILib", "AdvantageKit", "Limelight"],
         links: [

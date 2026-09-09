@@ -1,3 +1,4 @@
+import ThemeToggle from "./ThemeToggle";
 import { navLinks } from "../data/site";
 
 export default function NavBar() {
@@ -12,6 +13,11 @@ export default function NavBar() {
           {link.label}
         </a>
       ))}
+
+      {/* A hairline sets the toggle apart from the section links — it moves
+          you around the page; they move you through it. */}
+      <span aria-hidden="true" className="h-3 w-px bg-ink/20" />
+      <ThemeToggle />
     </nav>
   );
 }
