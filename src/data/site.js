@@ -5,7 +5,7 @@ export const profile = {
   greeting: "Hi, I'm",
   name: "Kevin Liu",
   location: "Los Angeles · UCLA",
-  bio: "I'm a freshman at UCLA studying CS and Engineering. I'm currently exploring AI, machine learning, and robotics.",
+  bio: "a freshman at UCLA studying CS and Engineering. I'm currently exploring AI, machine learning, and robotics.",
 };
 
 // Two bands on one page. Add an entry to either `entries` array and it
@@ -64,12 +64,12 @@ export const bands = [
         title: "Rewards Redemption Optimizer",
         meta: "Rove Miles (YC24) · Harvard Ventures Tech · 2025",
         description:
-          "GDS and NDC airline distribution research for a reward redemption optimizer.",
+          "GDS and NDC airline distribution research for a rewards redemption optimizer.",
         tags: ["Python", "SQLite", "HTML"],
       },
       {
         title: "Li-Ion Battery Degradation",
-        meta: "UT Dallas · Advised by Prof. Yanwen Xu · 2024",
+        meta: "UT Dallas · Advised by Prof.Yanwen Xu · 2024",
         description:
           "Battery degradation analysis using machine learning to optimize battery management system fluctuations.",
         tags: ["Python", "Keras", "TensorFlow"],
