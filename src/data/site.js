@@ -14,6 +14,13 @@ export const profile = {
 // Every entry carries `meta`: the mono context line under the title, org ·
 // role · year. It's what lets an entry stand with no links at all, which is
 // the normal case in the research band — those repositories are private.
+//
+// Two link shapes, and the entry picks one:
+//   `href`  — the entry *is* the thing. Title becomes the link, arrow rides
+//             beside it. Use when there's one destination (YouthWell).
+//   `links` — the entry collects several destinations, so they need labels
+//             and years of their own (FRC's three seasons).
+// An entry with neither just ends after its tags.
 export const bands = [
   {
     id: "work",
@@ -23,9 +30,8 @@ export const bands = [
       {
         title: "FRC Programming",
         meta: "Team 2714 BBQ · Programming Captain · 2022–2026",
-        description:
-          "Autonomous robot code across three seasons — state machines, pose estimation, system identification.",
-        tags: ["WPILib", "Command-Based", "Limelight"],
+        description: "Autonomous robot code across three competition seasons.",
+        tags: ["WPILib", "AdvantageKit", "Limelight"],
         links: [
           {
             year: "2026",
@@ -47,16 +53,9 @@ export const bands = [
       {
         title: "YouthWell",
         meta: "Code4Hope Hackathon · Top 10 of 250+ teams · 2025",
-        description:
-          "A mental health platform for teens: self-assessments, guided journals, a coping toolkit, an AI chatbot.",
-        tags: ["React", "Supabase", "Framer Motion"],
-        links: [
-          {
-            year: "2025",
-            label: "Live site",
-            href: "https://vkmyth.github.io/YouthWell/",
-          },
-        ],
+        description: "A mental health platform for teens.",
+        tags: ["React", "JavaScript", "Landbot"],
+        href: "https://vkmyth.github.io/YouthWell/",
       },
     ],
   },
@@ -67,17 +66,17 @@ export const bands = [
     entries: [
       {
         title: "Rewards Redemption Optimizer",
-        meta: "Rove Miles (YC24) · Harvard TECH Internship · 2025",
+        meta: "Rove Miles (YC24) · Harvard Ventures Tech · 2025",
         description:
-          "Searched synthetic GDS and NDC airline routings depth-first for the redemption with the highest value per mile.",
-        tags: ["Python", "SQLite", "Figma"],
+          "GDS and NDC airline distribution research for a reward redemption optimizer.",
+        tags: ["Python", "SQLite", "HTML"],
       },
       {
         title: "Li-Ion Battery Degradation",
-        meta: "UT Dallas · TAST STEM-BRIDGE · 2024",
+        meta: "UT Dallas · Advised by Prof. Yanwen Xu · 2024",
         description:
-          "LSTM models predicting state-of-health and state-of-charge on NASA's prognostic battery data, 0.335% RMSE over MLP baselines.",
-        tags: ["TensorFlow", "Keras", "LSTM"],
+          "Battery degradation analysis using machine learning to optimize battery management system fluctuations.",
+        tags: ["Python", "Keras", "TensorFlow"],
       },
     ],
   },

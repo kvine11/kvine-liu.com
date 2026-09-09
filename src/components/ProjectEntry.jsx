@@ -14,7 +14,15 @@
  * a *colored* chip, which is why these are a neutral outline over a 5% ink
  * fill. If they need to be louder, raise the fill; don't reach for a hue.
  *
- * Hover feedback is an indent shift plus the year label brightening.
+ * Two link shapes, and an entry picks one. `href` means the entry *is* the
+ * thing — the title becomes the link and the arrow rides beside it, so a
+ * single destination doesn't need a labelled row restating the title.
+ * `links` means the entry collects several destinations that each need a
+ * year and a label of their own (FRC's three seasons). An entry with
+ * neither ends after its tags.
+ *
+ * Hover feedback is an indent shift plus the year label brightening on the
+ * link rows; on a linked title it's the arrow stepping up and to the right.
  */
 export default function ProjectEntry({
   number,
@@ -22,6 +30,7 @@ export default function ProjectEntry({
   meta,
   description,
   tags,
+  href,
   links,
 }) {
   const hasLinks = links && links.length > 0;
@@ -38,7 +47,24 @@ export default function ProjectEntry({
 
       <div className="min-w-0">
         <h3 className="m-0 text-[34px] font-normal tracking-[-0.03em]">
-          {title}
+          {href ? (
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="group inline-flex items-baseline gap-3 text-ink"
+            >
+              {title}
+              <span
+                aria-hidden="true"
+                className="text-[15px] opacity-55 transition-all duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+              >
+                ↗
+              </span>
+            </a>
+          ) : (
+            title
+          )}
         </h3>
 
         {meta && (
