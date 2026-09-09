@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────────────────────────────────
-   Design tokens: a warm-neutral grayscale system. No accent color anywhere —
-   hierarchy and interactive state come from ink opacity alone, which is why
-   nearly every text/border utility in this codebase reads as `ink/NN`
-   rather than a second color. Registering these under @theme is what turns
-   them into utilities: --color-ink becomes text-ink / bg-ink / border-ink,
-   --radius-md becomes rounded-md, and so on.
+   Design tokens: a true-neutral grayscale system. No accent color anywhere,
+   and — as of the live-ground direction — no warm cast either. The previous
+   ground (#151310 / #f6f4ef) was a brown-black under a warm off-white; the
+   wide-tracked band headings and the outlined tag chips both read colder
+   than that ground, which is what made the pairing feel off. These are
+   neutral on both ends, so grain and drift are the only things breaking up
+   the field.
+
+   Hierarchy and interactive state still come from ink opacity alone, which
+   is why nearly every text/border utility in this codebase reads as
+   `ink/NN` rather than a second color. Registering these under @theme is
+   what turns them into utilities: --color-ink becomes text-ink / bg-ink /
+   border-ink, --radius-md becomes rounded-md, and so on.
    ───────────────────────────────────────────────────────────────────── */
 @theme {
-  --color-bg: #151310;
-  --color-ink: #f6f4ef;
-  --color-divider: color-mix(in srgb, #f6f4ef 12%, transparent);
+  --color-bg: #0f0f0f;
+  --color-ink: #f4f4f4;
+  --color-divider: color-mix(in srgb, #f4f4f4 14%, transparent);
 
   /* Schibsted Grotesk for everything readable; JetBrains Mono for the small
-     uppercase labels only — eyebrow, project numbers, years, section
-     headers, "Say hi", "In progress". */
+     uppercase labels only — eyebrow, project numbers, years, context lines,
+     tag chips, "Say hi". */
   --font-sans: "Schibsted Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
@@ -54,5 +61,137 @@
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
     }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   The ground. Three fixed layers under the page, none of which scroll with
+   it — the page moves *over* the ground rather than dragging it along. This
+   is also why the hero pool no longer stretches as entries are added: the
+   old gradient was sized as a percentage of the document, so a longer page
+   smeared it into a wash.
+
+   These live here rather than in Tailwind utilities because they're
+   multi-stop gradients and keyframes — the same reason FadingRule reaches
+   for a style object.
+   ───────────────────────────────────────────────────────────────────── */
+
+/* Four ink-only pools on a slow, unsynchronised cycle. 64s is deliberately
+   past the point where you can catch it moving: the ground is somewhere
+   else than when you landed, without ever having appeared to travel. */
+.ground-drift {
+  background:
+    radial-gradient(
+      760px 520px at 22% 12%,
+      color-mix(in srgb, var(--color-ink) 8%, transparent),
+      transparent 66%
+    ),
+    radial-gradient(
+      680px 560px at 82% 34%,
+      color-mix(in srgb, var(--color-ink) 4.5%, transparent),
+      transparent 68%
+    ),
+    radial-gradient(
+      900px 620px at 58% 88%,
+      color-mix(in srgb, var(--color-ink) 4%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      520px 420px at 8% 72%,
+      color-mix(in srgb, var(--color-ink) 3%, transparent),
+      transparent 68%
+    );
+  animation: ground-drift 64s ease-in-out infinite alternate;
+}
+
+@keyframes ground-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(-2.5%, 1.8%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(1.8%, -2.2%, 0) scale(1.03);
+  }
+  100% {
+    transform: translate3d(-1.2%, 2.4%, 0) scale(1.07);
+  }
+}
+
+/* One more pool, trailing the pointer. Ground.jsx damps it hard (0.045 per
+   frame) so it arrives about a second after you do — ambient light in a
+   room, not a spotlight following the cursor. --mx/--my are set on :root by
+   Ground; the fallback keeps it parked near the hero before first move. */
+.ground-cursor {
+  background: radial-gradient(
+    460px 460px at var(--mx, 50%) var(--my, 14%),
+    color-mix(in srgb, var(--color-ink) 5%, transparent),
+    transparent 62%
+  );
+}
+
+/* Grain. The single cheapest thing on the page and the one doing the most
+   work — it's what separates "material" from "a CSS gradient". One inline
+   SVG turbulence tile, no network request. The step-shift keeps it from
+   reading as a static overlay; 6 steps is enough to shimmer and few enough
+   to stay cheap. */
+.ground-grain {
+  opacity: 0.042;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  animation: ground-grain 6s steps(6) infinite;
+}
+
+@keyframes ground-grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-6px, 4px);
+  }
+  40% {
+    transform: translate(4px, -6px);
+  }
+  60% {
+    transform: translate(-4px, -3px);
+  }
+  80% {
+    transform: translate(6px, 5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Per-letter entrance for the band headings. BandHeading only adds this
+   class once the heading is in view, so the animation can't play behind the
+   fold; the delay is set inline per letter. */
+.band-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: band-letter 0.7s cubic-bezier(0.22, 0.7, 0.24, 1) forwards;
+}
+
+@keyframes band-letter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global rule above zeroes durations, which would leave .band-letter
+     stuck at opacity 0 for a frame; land it explicitly instead. And the
+     cursor pool has no reduced-motion form worth keeping — it only exists
+     to move. */
+  .band-letter {
+    opacity: 1;
+    transform: none;
+  }
+
+  .ground-cursor {
+    display: none;
   }
 }
