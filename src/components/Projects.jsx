@@ -6,15 +6,9 @@ import Reveal from "./Reveal";
 import { bands } from "../data/site";
 
 /**
- * Both work bands, rendered from `bands` in site.js. Everything stays on
- * one page: with a handful of entries, splitting Projects and Research onto
- * separate routes would give two thin pages and cost a router plus
- * SPA-fallback host config. The split that will actually earn its keep
- * later is a per-entry case study (/work/<slug>), not a per-category route
- * — and that one leaves these two bands exactly as they are.
- *
- * Numbering restarts inside each band and is derived from position, so
- * adding an entry to site.js doesn't mean renumbering the ones after it.
+ * Both work bands, rendered from `bands` in site.js. Numbering restarts per
+ * band and is derived from position, so adding an entry never means
+ * renumbering the ones after it.
  */
 export default function Projects() {
   return (
@@ -29,9 +23,7 @@ export default function Projects() {
 
           <FadingRule />
 
-          {/* Each entry fades/lifts into view once as it's scrolled to. A
-              rule closes every entry, including the last. An entry with no
-              title is still an open slot. */}
+          {/* A rule closes every entry, including the last. */}
           {band.entries.map((entry, i) => {
             const number = String(i + 1).padStart(2, "0");
             return (

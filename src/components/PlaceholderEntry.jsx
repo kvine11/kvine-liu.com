@@ -1,8 +1,4 @@
-/**
- * An unfilled slot in either band — held open, deliberately quiet. Both
- * bands are full right now; this stays because site.js is built to grow and
- * an entry with no title still has to render as something.
- */
+/** An unfilled slot — held open, deliberately quiet. */
 export default function PlaceholderEntry({ number }) {
   return (
     <div className="grid grid-cols-1 items-baseline gap-4 py-8 md:grid-cols-[44px_minmax(0,1fr)] md:gap-12">

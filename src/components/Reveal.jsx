@@ -1,11 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Fades and lifts children into place the first time they scroll into view,
- * then leaves them alone — no replay on re-scroll. Starts fully visible
- * (shown defaults to true) so content never depends on JS running before
- * first paint; the observer only has to fire to *hide* content that's
- * already off-screen, not to reveal content that's already on it.
+ * Fades and lifts children in the first time they scroll into view, once.
+ * Defaults to shown, so the observer only ever has to hide what's still
+ * off-screen — content never depends on JS to become visible.
  */
 export default function Reveal({ children, className = "" }) {
   const ref = useRef(null);

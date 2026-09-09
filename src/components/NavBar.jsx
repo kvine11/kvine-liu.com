@@ -14,8 +14,7 @@ export default function NavBar() {
         </a>
       ))}
 
-      {/* A hairline sets the toggle apart from the section links — it moves
-          you around the page; they move you through it. */}
+      {/* Hairline sets the toggle apart from the section links. */}
       <span aria-hidden="true" className="h-3 w-px bg-ink/20" />
       <ThemeToggle />
     </nav>

@@ -9,19 +9,14 @@ export const profile = {
 };
 
 // Two bands on one page. Add an entry to either `entries` array and it
-// renders — numbering is derived from position, so nothing after it needs
-// renumbering. An entry with no `title` renders as an open slot.
+// renders; numbering comes from position. An entry with no `title` is an
+// open slot.
 //
-// Every entry carries `meta`: the mono context line under the title, org ·
-// role · year. It's what lets an entry stand with no links at all, which is
-// the normal case in the research band — those repositories are private.
+// `meta` is the context line under the title (org · role · year) — it's what
+// lets an entry stand with no links, as the research ones do.
 //
-// Two link shapes, and the entry picks one:
-//   `href`  — the entry *is* the thing. Title becomes the link, arrow rides
-//             beside it. Use when there's one destination (YouthWell).
-//   `links` — the entry collects several destinations, so they need labels
-//             and years of their own (FRC's three seasons).
-// An entry with neither just ends after its tags.
+// Links: `href` makes the title the link (one destination); `links` gives
+// each destination its own labelled row. Neither is fine.
 export const bands = [
   {
     id: "work",

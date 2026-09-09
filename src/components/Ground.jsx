@@ -1,27 +1,14 @@
 import { useEffect } from "react";
 
 /**
- * The backdrop, in three fixed layers: a slow drift, a pool that trails the
+ * Three fixed layers under the page: a slow drift, a pool trailing the
  * cursor, and grain over both. Fixed rather than absolute, so the page
- * scrolls over the ground instead of dragging it along — which is also what
- * keeps the hero pool anchored now that the page runs to two full bands.
+ * scrolls over the ground instead of dragging it along.
  *
- * This is a deliberate, narrow return of motion after the static gradient,
- * not a restoration of the old "Live Ground". The differences are the whole
- * point: ink only (no color), 64s (not seconds), 3–8% (not visible as
- * shapes), grain (not a halftone dot-mask), and a cursor pool that lags
- * rather than tracks. If it ever starts reading as templated again, the
- * cursor layer is the first thing to cut.
- *
- * All three layers are pointer-events-none and aria-hidden; content sits
- * above them on z-10.
+ * See "The Ground" in CLAUDE.md before changing any of it.
  */
 export default function Ground({ children }) {
   useEffect(() => {
-    // Damping is the design, not a tuning detail: at 0.045 per frame the
-    // pool arrives roughly a second behind the pointer, which is what makes
-    // it read as ambient light rather than a spotlight. Skipped entirely
-    // without a hover-capable pointer, so it never runs on touch.
     if (typeof window === "undefined" || !window.matchMedia) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(hover: hover)").matches) return;
@@ -39,6 +26,8 @@ export default function Ground({ children }) {
     };
 
     const loop = () => {
+      // 0.045 lands the pool ~a second behind the pointer. That lag is the
+      // point — raise it and this becomes a spotlight.
       x += (targetX - x) * 0.045;
       y += (targetY - y) * 0.045;
       root.style.setProperty("--mx", `${x.toFixed(1)}px`);

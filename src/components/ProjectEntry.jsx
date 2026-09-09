@@ -1,28 +1,9 @@
 /**
- * One filled entry: number, title block, and — when there are any — the
- * links stacked below it. Text-only, no color accent.
+ * One filled entry: number, title, meta line, description, tags, links.
  *
- * `meta` is the mono context line under the title (org · role · year). It's
- * what lets an entry stand without links at all: the research band's
- * repositories are private, so those rows end after the tags, and without
- * the context line a title would be left floating with nothing to anchor
- * it. Every entry carries one, so the rhythm holds across both bands.
- *
- * `tags` render as small outlined chips. They were a dot-separated mono
- * line for a long time, on the reasoning that a chip would be the one bit
- * of "accent" the system doesn't have anywhere else — that still holds for
- * a *colored* chip, which is why these are a neutral outline over a 5% ink
- * fill. If they need to be louder, raise the fill; don't reach for a hue.
- *
- * Two link shapes, and an entry picks one. `href` means the entry *is* the
- * thing — the title becomes the link and the arrow rides beside it, so a
- * single destination doesn't need a labelled row restating the title.
- * `links` means the entry collects several destinations that each need a
- * year and a label of their own (FRC's three seasons). An entry with
- * neither ends after its tags.
- *
- * Hover feedback is an indent shift plus the year label brightening on the
- * link rows; on a linked title it's the arrow stepping up and to the right.
+ * `href` makes the title itself the link. `links` renders a labelled row
+ * per destination. An entry with neither ends after its tags — the research
+ * entries have private repos, so that's the normal case, not a gap.
  */
 export default function ProjectEntry({
   number,
@@ -36,8 +17,6 @@ export default function ProjectEntry({
   const hasLinks = links && links.length > 0;
 
   return (
-    // One column on phones; number + content from md up. No lg-only third
-    // column — links always sit stacked under the title.
     <div
       className={`grid grid-cols-1 items-start gap-4 md:grid-cols-[44px_minmax(0,1fr)] md:gap-12 ${
         hasLinks ? "py-11" : "py-9"
@@ -52,12 +31,12 @@ export default function ProjectEntry({
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-baseline gap-3 text-ink"
+              className="group inline-flex items-baseline gap-3 text-ink transition-all duration-150 ease-out hover:pl-3"
             >
               {title}
               <span
                 aria-hidden="true"
-                className="text-[15px] opacity-55 transition-all duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
+                className="text-[15px] opacity-55 transition-opacity duration-150 ease-out group-hover:opacity-100"
               >
                 ↗
               </span>

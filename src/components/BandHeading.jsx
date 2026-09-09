@@ -1,18 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * A band's heading: the name set large, light and wide-tracked, with the
- * year range as a small mono label on the right.
- *
- * The tracking is the point. The h1 runs tight at -0.05em; setting the band
- * names at +0.1em means the two are doing opposite things, and the contrast
- * is what gives the sections presence without a heavier weight. Don't
- * bolden these to make them louder — open them further.
- *
- * Letters stagger in, but only once the heading is actually in view. Same
- * observer contract as Reveal: default to shown when IntersectionObserver
- * is missing, and show immediately if it's already on screen at mount, so
- * nothing depends on JS for content that would otherwise be visible.
+ * A band's heading: name set large and wide-tracked, year range at right.
+ * Letters stagger in once it scrolls into view — same observer contract as
+ * Reveal, so nothing depends on JS to become visible.
  */
 export default function BandHeading({ name, range }) {
   const ref = useRef(null);
@@ -45,9 +36,8 @@ export default function BandHeading({ name, range }) {
 
   return (
     <div ref={ref} className="flex items-baseline justify-between pb-[22px]">
-      {/* The visible text is split per-letter for the stagger, so the name
-          is carried on the heading's aria-label rather than left to a
-          screen reader to reassemble from spans. */}
+      {/* Split per-letter for the stagger, so the name lives on aria-label
+          rather than being reassembled from spans. */}
       <h2
         aria-label={name}
         className="text-[clamp(28px,6vw,38px)] leading-none font-light tracking-[0.1em] text-ink/90 uppercase"

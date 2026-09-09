@@ -14,10 +14,8 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <!-- Theme, resolved before first paint so a cream-mode reload never
-         flashes the dark ground. Kept inline and dependency-free for the
-         same reason: anything deferred is too late. This is the one script
-         that belongs in this file. -->
+    <!-- Resolved before first paint, or a cream reload flashes dark. Has to
+         stay inline and first — anything deferred is too late. -->
     <script>
       (function () {
         try {
