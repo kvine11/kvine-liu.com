@@ -14,6 +14,22 @@
       href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <!-- Resolved before first paint, or a cream reload flashes dark. Has to
+         stay inline and first — anything deferred is too late. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var light =
+            stored === "light" ||
+            (!stored &&
+              window.matchMedia("(prefers-color-scheme: light)").matches);
+          document.documentElement.dataset.theme = light ? "light" : "dark";
+        } catch (e) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
   </head>
   <body>
     <!-- The only HTML file left. React mounts the whole site into #root. -->

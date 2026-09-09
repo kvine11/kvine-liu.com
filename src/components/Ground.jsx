@@ -1,19 +1,64 @@
+import { useEffect } from "react";
+
 /**
- * A quiet, fixed backdrop: one soft radial gradient lightening the area
- * behind the hero, falling back to flat ground everywhere else. Replaces
- * the old drifting-blob / cursor-glow / halftone treatment — same idea of
- * ambient depth, none of the motion or color.
+ * Three fixed layers under the page: a slow drift, a pool trailing the
+ * cursor, and grain over both. Fixed rather than absolute, so the page
+ * scrolls over the ground instead of dragging it along.
+ *
+ * See "The Ground" in CLAUDE.md before changing any of it.
  */
 export default function Ground({ children }) {
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    const root = document.documentElement;
+    let targetX = window.innerWidth * 0.5;
+    let targetY = window.innerHeight * 0.2;
+    let x = targetX;
+    let y = targetY;
+    let frame = 0;
+
+    const onMove = (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+    };
+
+    const loop = () => {
+      // 0.045 lands the pool ~a second behind the pointer. That lag is the
+      // point — raise it and this becomes a spotlight.
+      x += (targetX - x) * 0.045;
+      y += (targetY - y) * 0.045;
+      root.style.setProperty("--mx", `${x.toFixed(1)}px`);
+      root.style.setProperty("--my", `${y.toFixed(1)}px`);
+      frame = requestAnimationFrame(loop);
+    };
+
+    window.addEventListener("pointermove", onMove, { passive: true });
+    frame = requestAnimationFrame(loop);
+
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      cancelAnimationFrame(frame);
+      root.style.removeProperty("--mx");
+      root.style.removeProperty("--my");
+    };
+  }, []);
+
   return (
-    <div className="relative isolate overflow-hidden bg-bg">
+    <div className="relative isolate bg-bg">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
-        style={{
-          background:
-            "radial-gradient(120% 60% at 28% 0%, color-mix(in srgb, var(--color-ink) 6%, transparent), transparent 62%)",
-        }}
+        className="ground-drift pointer-events-none fixed inset-0 z-0"
+      />
+      <div
+        aria-hidden="true"
+        className="ground-cursor pointer-events-none fixed inset-0 z-[1]"
+      />
+      <div
+        aria-hidden="true"
+        className="ground-grain pointer-events-none fixed inset-0 z-[2]"
       />
       <div className="relative z-10">{children}</div>
     </div>

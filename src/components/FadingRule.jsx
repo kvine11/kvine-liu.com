@@ -1,7 +1,7 @@
 /**
- * A Nocturne signature: rules fade to transparent over 48px at each end
- * rather than stopping cleanly. Tailwind has no utility for a four-stop
- * gradient like this, so it comes through as a style object.
+ * A rule that fades to transparent over 48px at each end rather than
+ * stopping cleanly. No Tailwind utility for a four-stop gradient, hence the
+ * style object.
  */
 export default function FadingRule() {
   return (
