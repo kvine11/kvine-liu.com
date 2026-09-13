@@ -19,7 +19,7 @@ export default function Projects() {
           id={band.id}
           className={`px-6 md:px-16 ${bandIndex > 0 ? "pt-[104px]" : ""}`}
         >
-          <BandHeading name={band.name} range={band.range} />
+          <BandHeading name={band.name} />
 
           <FadingRule />
 

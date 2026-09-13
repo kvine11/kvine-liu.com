@@ -1,5 +1,6 @@
 /**
- * One filled entry: number, title, meta line, description, tags, links.
+ * One filled entry: number, title with year at right, meta line,
+ * description, tags, links.
  *
  * `href` makes the title itself the link. `links` renders a labelled row
  * per destination. An entry with neither ends after its tags — the research
@@ -8,6 +9,7 @@
 export default function ProjectEntry({
   number,
   title,
+  year,
   meta,
   description,
   tags,
@@ -25,26 +27,33 @@ export default function ProjectEntry({
       <span className="pt-2.5 font-mono text-xs text-ink/48">{number}</span>
 
       <div className="min-w-0">
-        <h3 className="m-0 text-[34px] font-normal tracking-[-0.03em]">
-          {href ? (
-            <a
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="group inline-flex items-baseline gap-3 text-ink transition-all duration-150 ease-out hover:pl-3"
-            >
-              {title}
-              <span
-                aria-hidden="true"
-                className="text-[15px] opacity-55 transition-opacity duration-150 ease-out group-hover:opacity-100"
+        <div className="flex items-baseline justify-between gap-4">
+          <h3 className="m-0 min-w-0 text-[34px] font-normal tracking-[-0.03em]">
+            {href ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="group inline-flex items-baseline gap-3 text-ink transition-all duration-150 ease-out hover:pl-3"
               >
-                ↗
-              </span>
-            </a>
-          ) : (
-            title
+                {title}
+                <span
+                  aria-hidden="true"
+                  className="text-[15px] opacity-55 transition-opacity duration-150 ease-out group-hover:opacity-100"
+                >
+                  ↗
+                </span>
+              </a>
+            ) : (
+              title
+            )}
+          </h3>
+          {year && (
+            <span className="flex-none font-mono text-[11px] tracking-[0.16em] whitespace-nowrap text-ink/48 uppercase">
+              {year}
+            </span>
           )}
-        </h3>
+        </div>
 
         {meta && (
           <p className="mt-3 mb-0 font-mono text-[11px] tracking-[0.1em] text-ink/48 uppercase">

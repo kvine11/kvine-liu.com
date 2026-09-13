@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * A band's heading: name set large and wide-tracked, year range at right.
- * Letters stagger in once it scrolls into view — same observer contract as
- * Reveal, so nothing depends on JS to become visible.
+ * A band's heading: name set large and wide-tracked. Years live on each
+ * entry, not here. Letters stagger in once it scrolls into view — same
+ * observer contract as Reveal, so nothing depends on JS to become visible.
  */
-export default function BandHeading({ name, range }) {
+export default function BandHeading({ name }) {
   const ref = useRef(null);
   const [shown, setShown] = useState(
     () => typeof IntersectionObserver === "undefined"
@@ -35,7 +35,7 @@ export default function BandHeading({ name, range }) {
   }, []);
 
   return (
-    <div ref={ref} className="flex items-baseline justify-between pb-[22px]">
+    <div ref={ref} className="pb-[22px]">
       {/* Split per-letter for the stagger, so the name lives on aria-label
           rather than being reassembled from spans. */}
       <h2
@@ -53,9 +53,6 @@ export default function BandHeading({ name, range }) {
           </span>
         ))}
       </h2>
-      <span className="flex-none font-mono text-[11px] tracking-[0.16em] whitespace-nowrap text-ink/48 uppercase">
-        {range}
-      </span>
     </div>
   );
 }
