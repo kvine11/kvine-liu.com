@@ -24,7 +24,7 @@ export default function ProjectEntry({
         hasLinks ? "py-11" : "py-9"
       }`}
     >
-      <span className="pt-2.5 font-mono text-xs text-ink/48">{number}</span>
+      <span className="pt-2.5 font-mono text-xs text-label">{number}</span>
 
       <div className="min-w-0">
         <div className="flex items-baseline justify-between gap-4">
@@ -49,14 +49,14 @@ export default function ProjectEntry({
             )}
           </h3>
           {year && (
-            <span className="flex-none font-mono text-[11px] tracking-[0.16em] whitespace-nowrap text-ink/48 uppercase">
+            <span className="flex-none font-mono text-[11px] tracking-[0.16em] whitespace-nowrap text-label uppercase">
               {year}
             </span>
           )}
         </div>
 
         {meta && (
-          <p className="mt-3 mb-0 font-mono text-[11px] tracking-[0.1em] text-ink/48 uppercase">
+          <p className="mt-3 mb-0 font-mono text-[11px] tracking-[0.1em] text-label uppercase">
             {meta}
           </p>
         )}
@@ -90,7 +90,7 @@ export default function ProjectEntry({
                   i < links.length - 1 ? "border-b border-divider" : ""
                 }`}
               >
-                <span className="w-10 flex-none font-mono text-xs text-ink/48 transition-colors group-hover:text-ink/75">
+                <span className="w-10 flex-none font-mono text-xs text-label transition-colors group-hover:text-ink/75">
                   {link.year}
                 </span>
                 <span className="mr-auto text-[17px]">{link.label}</span>

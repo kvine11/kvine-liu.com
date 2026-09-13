@@ -9,6 +9,12 @@
   --color-ink: #f4f4f4;
   --color-divider: color-mix(in srgb, #f4f4f4 14%, transparent);
 
+  /* Label and nav text are still ink at an alpha, but the alpha has to
+     differ per ground: 48% ink clears AA on #0f0f0f and reads ~3:1 on
+     cream. So these two are tokens (text-label, text-nav), not ink/NN. */
+  --color-label: color-mix(in srgb, #f4f4f4 48%, transparent);
+  --color-nav: color-mix(in srgb, #f4f4f4 60%, transparent);
+
   /* Sans for everything readable; mono for the small uppercase labels. */
   --font-sans: "Schibsted Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -19,12 +25,15 @@
   --radius-lg: 14px;
 }
 
-/* Cream mode: the same one-color system with three tokens swapped, not a
-   second palette. Every `ink/NN` works unchanged in both. */
+/* Cream mode: the same one-color system with its tokens swapped, not a
+   second palette. Every `ink/NN` works unchanged in both; label and nav
+   carry more ink here so small text clears 4.5:1 on the paler ground. */
 :root[data-theme="light"] {
   --color-bg: #e9e4d9;
   --color-ink: #1b1917;
   --color-divider: color-mix(in srgb, #1b1917 14%, transparent);
+  --color-label: color-mix(in srgb, #1b1917 65%, transparent);
+  --color-nav: color-mix(in srgb, #1b1917 68%, transparent);
 }
 
 :root {
