@@ -27,7 +27,7 @@ The current direction (as of the September 2026 redesign) departs from the earli
 
 ## Design System
 
-The tokens in `src/index.css` are a true-neutral grayscale system — **no accent color anywhere, and no warm cast either.** The ground ran warm for a while (`#151310` under `#f6f4ef`, a brown-black under a warm off-white); the wide-tracked band headings and the outlined tag chips both read colder than that, which is what made the pairing feel off. It is now `#0f0f0f` / `#f4f4f4`, neutral on both ends, so grain and drift are the only things breaking up the field. Hierarchy and interactive state come entirely from `ink` at different opacities, plus type size, weight, and spacing.
+The tokens in `src/index.css` are a true-neutral grayscale system — **no accent color anywhere, and no warm cast either.** The ground ran warm for a while (`#151310` under `#f6f4ef`, a brown-black under a warm off-white); the wide-tracked band headings and the outlined tag chips both read colder than that, which is what made the pairing feel off. It is now `#0f0f0f` / `#f4f4f4`, neutral on both ends, so grain and drift are the only things breaking up the field. The one deliberate exception is cream mode, which is warm on purpose (see "Theme"). Hierarchy and interactive state come entirely from `ink` at different opacities, plus type size, weight, and spacing.
 
 - **Take colors, fonts and radii from the tokens** (`text-ink`, `bg-bg`, `border-divider`, `rounded-md`). Don't hard-code a hex a token already carries.
 - **There is no `--color-accent`.** Muted text, dividers, and hover states are all the ink token at reduced alpha — `text-ink/65`, `text-ink/45`, `border-ink/40` on hover. If a change seems to call for introducing a color, it almost certainly doesn't — reach for a different opacity step instead.
@@ -52,6 +52,7 @@ Two grounds, one system. Dark is the default; cream is `:root[data-theme="light"
 - **The toggle is a switch, not a pictogram** — a 26×14 track with a knob, built from ink at two alphas and `rounded-full`. That distinction is what keeps it inside the no-graphic-marks rule: a sun/moon glyph would be an image standing in for a word, and the only one on the site; a track and a knob aren't a picture of anything, they're a control showing its own position. Which is also why it carries no visible label. Semantics are `role="switch"` + `aria-checked` with `aria-label="Cream mode"` — it's a two-state control, and cream mode is a thing that is either on or off.
 - **What genuinely inverts is what the ground is _doing_.** In cream the drift pools lighten toward white rather than darkening — a pool of ink drifting across pale paper reads as a stain. One low ink pool stays for depth.
 - **Grain has to switch to `multiply` on cream.** Screened over pale ground it washes out entirely, and the texture is the whole reason the ground reads as material rather than a gradient.
+- **Cream is warm on purpose.** `#e9e4d9` under `#1b1917` is a paper tone, and it's why the switch is called "Cream mode". The no-warm-cast rule in "Design System" is about the dark ground; it doesn't reach cream. Don't flatten cream to a neutral gray, and don't carry its warmth into dark. Design detectors flag cream grounds as an AI-default look (`[cream-palette]`); that was reviewed on 2026-09-12 and kept.
 
 ## The Ground
 
