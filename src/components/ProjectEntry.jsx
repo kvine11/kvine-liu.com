@@ -70,7 +70,7 @@ export default function ProjectEntry({
             {tags.map((tag) => (
               <li
                 key={tag}
-                className="rounded-md border border-ink/16 bg-ink/5 px-2.5 py-[5px] font-mono text-[10.5px] leading-none tracking-[0.09em] text-ink/68 uppercase transition-colors duration-150 hover:border-ink/35 hover:text-ink"
+                className="rounded-md border border-ink/16 bg-ink/5 px-2.5 py-[5px] font-mono text-[11px] leading-none tracking-[0.09em] text-ink/68 uppercase transition-colors duration-150 hover:border-ink/35 hover:text-ink"
               >
                 {tag}
               </li>
