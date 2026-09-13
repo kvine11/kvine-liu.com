@@ -30,7 +30,8 @@ export default function ThemeToggle() {
       aria-checked={isCream}
       aria-label="Cream mode"
       onClick={toggle}
-      className={`group relative h-[14px] w-[26px] flex-none rounded-full border transition-colors duration-200 ease-out ${
+      // The track stays 26×14; the ::after makes the tap target 44×44.
+      className={`group relative h-[14px] w-[26px] flex-none rounded-full border transition-colors duration-200 ease-out after:absolute after:-inset-x-[9px] after:-inset-y-[15px] ${
         isCream ? "border-ink/45" : "border-ink/25 hover:border-ink/40"
       }`}
     >

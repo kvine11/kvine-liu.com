@@ -20,7 +20,9 @@ export default function Contact() {
               href={link.href}
               target={link.href.startsWith("mailto:") ? undefined : "_blank"}
               rel="noreferrer"
-              className="border-b border-transparent pb-0.5 text-ink transition-colors duration-150 ease-out hover:border-ink/40"
+              // ::after pads the tap target to 44px tall; the underline
+              // and focus ring stay on the text.
+              className="relative border-b border-transparent pb-0.5 text-ink transition-colors duration-150 ease-out after:absolute after:inset-x-0 after:-inset-y-[9px] hover:border-ink/40"
             >
               {link.label}
             </a>

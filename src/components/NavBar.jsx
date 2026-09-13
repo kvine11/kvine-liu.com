@@ -8,7 +8,9 @@ export default function NavBar() {
         <a
           key={link.href}
           href={link.href}
-          className="text-[13px] text-nav transition-colors duration-150 hover:text-ink"
+          // The ::after strip pads the tap target to 44px tall without
+          // moving the text or stretching the focus ring.
+          className="relative text-[13px] text-nav transition-colors duration-150 after:absolute after:inset-x-0 after:-inset-y-3 hover:text-ink"
         >
           {link.label}
         </a>
