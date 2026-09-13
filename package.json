@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test": "vitest run",
     "format": "prettier --write \"**/*.{js,jsx,css,html}\""
   },
   "keywords": [],
@@ -13,10 +14,14 @@
   "description": "Kevin Liu — personal portfolio. React + Tailwind, no backend.",
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
     "@vitejs/plugin-react": "^6.1.0",
+    "jsdom": "^30.0.1",
     "prettier": "^3.9.3",
     "tailwindcss": "^4.3.3",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "react": "^19.2.8",

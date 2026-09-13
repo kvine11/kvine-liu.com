@@ -6,4 +6,11 @@ import tailwindcss from "@tailwindcss/vite";
 // No server, no backend — `npm run build` emits a folder of static files.
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  // Vitest reads this same config, so tests go through the same React
+  // transform as the dev server. See TESTING.md.
+  test: {
+    environment: "jsdom",
+    include: ["test/**/*.test.jsx"],
+    setupFiles: ["./test/setup.js"],
+  },
 });

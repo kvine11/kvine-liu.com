@@ -23,6 +23,7 @@ The current direction (as of the September 2026 redesign) departs from the earli
 - `npm run dev` — Vite dev server with hot reload.
 - `npm run build` — static production build into `dist/`.
 - `npm run preview` — serve the built output.
+- `npm test` — run the Vitest suite once (see "Testing").
 - `npm run format` — Prettier over `js/jsx/css/html`.
 
 ## Design System
@@ -133,3 +134,14 @@ Key routing rules:
 - Save progress → invoke /context-save
 - Resume context → invoke /context-restore
 - Author a backlog-ready spec/issue → invoke /spec
+
+## Testing
+
+- Run `npm test` (Vitest, one run) or `npx vitest` (watch). Tests live in `test/`; TESTING.md covers the stack, layers and conventions.
+- 100% test coverage is the goal — tests make vibe coding safe.
+- When writing new functions, write a corresponding test.
+- When fixing a bug, write a regression test.
+- When adding error handling, write a test that triggers the error.
+- When adding a conditional (if/else, switch), write tests for BOTH paths.
+- Never commit code that makes existing tests fail.
+- Test what the page promises (which link shape an entry gets, numbering by position, the theme choice persisting), never class names: a design change shouldn't break a test.
