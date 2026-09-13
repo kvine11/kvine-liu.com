@@ -52,7 +52,7 @@ export const bands = [
         year: "2025",
         meta: "Code4Hope Hackathon · Top 10 of 250+ teams",
         description: "A mental health platform for teens.",
-        tags: ["React", "JavaScript", "Landbot"],
+        tags: ["React", "JavaScript"],
         href: "https://vkmyth.github.io/YouthWell/",
       },
       {
