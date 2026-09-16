@@ -62,6 +62,12 @@ export const bands = [
         tags: ["Java", "Spring Boot", "PostgreSQL"],
         href: "https://github.com/kvine11/calorie-tracker",
       },
+      {
+        title: "Micrograd",
+        year: "2026",
+        description: "A tiny neural network built from scratch.",
+        tags: ["Jupyter Notebook", "Python", "PyTorch"],
+      },
     ],
   },
   {
