@@ -66,7 +66,7 @@ export const bands = [
         title: "Micrograd",
         year: "2026",
         description: "A tiny neural network built from scratch.",
-        tags: ["Jupyter Notebook", "Python", "PyTorch"],
+        tags: ["Python", "PyTorch"],
       },
     ],
   },
