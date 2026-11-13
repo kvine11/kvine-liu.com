@@ -24,6 +24,13 @@ export const bands = [
     name: "Projects",
     entries: [
       {
+        title: "BruinPlan",
+        year: "2026 — Present",
+        meta: "UCLA DevX · Lead Developer",
+        description: "UCLA DARS parser.",
+        tags: ["Python", "Django", "Supabase"],
+      },
+      {
         title: "FRC Programming",
         year: "2024 — 2026",
         meta: "Team 2714 BBQ · Programming Captain",
