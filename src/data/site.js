@@ -5,7 +5,7 @@ export const profile = {
   greeting: "Hi, I'm",
   name: "Kevin Liu",
   location: "Los Angeles · UCLA",
-  bio: "a freshman at UCLA studying CS and Engineering. I'm currently exploring AI, machine learning, and robotics.",
+  bio: "a student at UCLA studying CS and Engineering. I'm currently exploring AI, machine learning, and robotics.",
 };
 
 // Two bands on one page. Add an entry to either `entries` array and it
